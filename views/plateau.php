@@ -9,6 +9,14 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
       <script src="js/bootstrap.min.js"></script>
       <script src="js/java.js"></script> -->
+      <style>
+        a {
+          color: black;
+        }
+        a.disable {
+          color: red;
+        }
+      </style>
   </head>
   <body style="">
     <?php
@@ -18,17 +26,31 @@
       foreach ($choices as $choice => $val) {
         echo '<a href="index.php?choice='.$choice.'" class="'.($val ? '' : 'disable').'">'.$choice.'</a></br>';
       }
-
+      echo 'Nom: '.$context->hero->nom.'</br>';
+      echo 'Vie: '.$context->hero->vie.'</br>';
+      echo 'Attaque: '.$context->hero->attaque.'</br>';
+      echo 'Defense: '.$context->hero->defense.'</br>';
+      echo 'Vitesse: '.$context->hero->vitesse.'</br>';
+      echo 'Magie: '.$context->hero->magie.'</br>';
       // affichage des informations de la salle
-      echo 'nb monstre: '.$nb_monstre.'</br>';
-      echo 'nb coffre: '.$nb_coffre.'</br>';
+      echo 'nb monstre: '.$context->niveau->get('monstre').'</br>';
+      echo 'nb coffre: '.$context->niveau->get('coffre').'</br>';
 
       // affichage de la progression
-      echo 'niveau : '.$niveau.'/5</br>';
+      echo 'niveau : '.$context->niveau->id.'/5</br>';
       // affichage de la qte de gold;
-      echo 'golds : '.$gold.'</br>';
+      echo 'golds : '.$context->gold.'</br>';
 
     ?>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('a').click(function(e){
+          if ($(this).hasClass('disable')) {
+            e.preventDefault();
+          }
+        })
+      });
+    </script>
   </body>
 </html>

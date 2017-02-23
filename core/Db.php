@@ -41,7 +41,6 @@
       $sql = rtrim($sql, ',');
       $sql .= ')';
 
-      var_dump($sql);
       $result = self::$pdo->query($sql);
       return $result;
     }
@@ -57,7 +56,8 @@
         $sql .= $fields;
       }
 
-      $sql .= ' FROM '.$table.' '.$where;
+      $sql .= ' FROM '.$table.' WHERE 1 = 1 AND '.$where;
+
       $result = self::$pdo->query($sql);
       if (!empty($result)) {
         $result = $result->fetchAll(PDO::FETCH_ASSOC);
