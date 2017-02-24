@@ -22,15 +22,17 @@
             $context = unserialize($_SESSION['context']);
           } else if (isset($_GET['hero']) && !empty($_GET['hero'])){
 
-              $hero = new Hero($_GET['hero']);
-              echo 'vous êtes :'.$hero->nom.'</br>';
-              $niveau = new Niveau();
+              //function lancé de dés
 
+              $hero = new Hero($_GET['hero']);
+              $hero->statistique();
+              $niveau = new Niveau();
               $context = new Context();
               $context->niveau = $niveau;
               $context->hero = $hero;
               $_SESSION['context'] = serialize($context);
               header('Location: index.php');
+
           } else {
             $heros = array(
               new Hero(1),
