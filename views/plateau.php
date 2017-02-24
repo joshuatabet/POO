@@ -52,5 +52,9 @@
         })
       });
     </script>
+
+    <form action="deconnexion.php">
+        <button>log out</button>
+    </form>
   </body>
 </html>
