@@ -1,0 +1,6 @@
+RewriteEngine On
+
+RewriteCond /views/%{REQUEST_FILENAME} !-f
+RewriteCond /views/%{REQUEST_FILENAME} !-d
+
+RewriteRule ^(.*) index.php [L]
