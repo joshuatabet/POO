@@ -3,7 +3,7 @@
   <head>
       <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
       <title> DONJON </title>
-      <link rel="stylesheet" href="style.css"/>
+      <link rel="stylesheet" href="css/style.css"/>
       <!-- <link href="css/bootstrap.min.css" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="css/animate.css">
       <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -21,7 +21,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <form id="login-form" action="index.php" method="get">
+                    <form id="login-form" action="?controller=ConnexionController" method="get">
                       <input type="hidden" name="type" value="inscription"/>
                         <div class="modal-body">
                             <div id="div-login-msg">
@@ -51,8 +51,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    <form id="login-form" action="index.php" method="get">
-                      <input type="hidden" name="type" value="connexion"/>
+                    <form id="login-form" action="index.php?controller=ConnexionController&connexion=1" method="post">
                         <div class="modal-body">
                             <div id="div-login-msg">
                                 <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"
@@ -63,11 +62,10 @@
                                    placeholder="Entrez votre identifiant." required name="email">
                             <input id="login_password" class="form-control" type="password"
                                    placeholder="Entrez votre mot de passe." required name="pass">
-
                         </div>
                         <div class="modal-footer">
                             <div>
-                                <button type="submit" class="btn btn-primary btn-lg btn-block">Connexion</button>
+                                <button name="connexionSubmit" value="1" type="submit" class="btn btn-primary btn-lg btn-block">Connexion</button>
                             </div>
                         </div>
                     </form>

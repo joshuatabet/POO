@@ -5,5 +5,8 @@ RewriteEngine On
 RewriteCond /views/%{REQUEST_FILENAME} !-f
 RewriteCond /views/%{REQUEST_FILENAME} !-d
 
+# si la requete est /admin
+RewriteRule admin index.php?controller=AdminConnexionController
+
 # redirection vers l'index
-RewriteRule ^(.*) index.php [L]
+RewriteRule (.*) index.php [L]

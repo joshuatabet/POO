@@ -1,6 +1,36 @@
 <?php
 
-  class Dispatcher {
+  class Dispatcher
+  {
+
+      public static function route()
+      {
+        // chargement du controller
+        if (isset($_GET['controller']) && !empty($_GET['controller'])) {
+          if ( is_file('controllers/'.$_GET['controller'].'.php')
+            || is_file('controllers/admin/'.$_GET['controller'].'.php')
+            || is_file('controllers/front/'.$_GET['controller'].'.php')
+          ) {
+            $controller = new $_GET['controller']();
+          } else {
+            die('controller '.$_GET['controller'].' introuvable');
+          }
+        } else {
+          $controller = new ConnexionController();
+        }
+
+        // execution de la method dans le controller précédemment chargé
+        if (isset($_GET['method']) && !empty($_GET['method'])) {
+          if (method_exists($controller, $_GET['method'])) {
+            call_user_func($controller, $_GET['method']);
+          } else {
+            die('method '.$_GET['method'].' introuvable');
+          }
+        } else {
+          $controller->index();
+        }
+      }
+
 
       public static function dispatch()
       {
@@ -119,5 +149,3 @@
       }
 
   }
-
-?>
