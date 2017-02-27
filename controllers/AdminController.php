@@ -8,10 +8,10 @@
       if (Tools::isValidSession('id_user') && Tools::isValidSession('uniqid')) {
         $user = new User(Tools::getValueSession('id_user'));
         if ($user->admin && $user->uniqid == Tools::getValueSession('uniqid')) {
-          return true;
+          return;
         }
       }
-      header('Location: index.php?controller=AdminConnexionController');
+      //header('Location: index.php?controller=AdminConnectionController');
     }
-    
+
   }

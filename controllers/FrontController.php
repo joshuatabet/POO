@@ -13,6 +13,6 @@
           return true;
         }
       }
-      header('Location: index.php?controller=ConnexionController');
+      header('Location: index.php?controller=ConnectionController');
     }
   }

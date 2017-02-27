@@ -16,7 +16,7 @@
             die('controller '.$_GET['controller'].' introuvable');
           }
         } else {
-          $controller = new ConnexionController();
+          $controller = new ConnectionController();
         }
 
         // execution de la method dans le controller précédemment chargé

@@ -6,6 +6,6 @@
   </head>
   <body>
     <h1>BackOffice</h1>
-    <?php include 'menu.php' ?>
+    <?php include 'nav.php' ?>
   </body>
 </html>

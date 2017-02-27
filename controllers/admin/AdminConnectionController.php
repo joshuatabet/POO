@@ -1,6 +1,6 @@
 <?php
 
-  class AdminConnexionController extends AdminController
+  class AdminConnectionController extends AdminController
   {
     public function __construct()
     {
@@ -8,13 +8,12 @@
     }
     public function index()
     {
-      if (Tools::isSubmit('connexion') && Tools::isValid('email') && Tools::isValid('pass')) {
+      if (Tools::isSubmit('login') && Tools::isValid('email') && Tools::isValid('pass')) {
         $user = new User();
         $user->email = Tools::getValue('email');
         $user->pass = Tools::getValue('pass');
-        $user->load();
         if ($user->load() && $user->admin) {
-            $user->newConnexion();
+            $user->newConnection();
             header('Location: index.php?controller=AdminHomeController');
         }
       } else if (Tools::isValid('uniqid') && Tools::isValid('id_user')) {
@@ -22,10 +21,10 @@
         if ($user->uniqid == Tools::getValue('uniqid') && $user->admin) {
           return true;
         }
-      } else if (Tools::isSubmit('deconnexion')) {
+      } else if (Tools::isSubmit('logout')) {
         session_unset();
       }
-      $this->render('admin/connexion');
+      $this->render('admin/login');
     }
 
   }

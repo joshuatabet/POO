@@ -6,6 +6,20 @@
     public $identifier;
     public $definition;
 
+    public function __construct($id = null)
+    {
+      if ($id != null) {
+        $row = $this->getById($id);
+        if ($row) {
+          foreach ($row as $key => $value) {
+            $this->$key = $value;
+          }
+          return true;
+        }
+        return false;
+      }
+    }
+
     public function create()
     {
       // parcour de la definition pour valider les valeurs avant insert
@@ -26,7 +40,16 @@
       }
 
       $data = $this->createDataArray();
-      return Db::getInstance()->update($this->table, $data, 'id_user = "'.$this->id_user.'"');
+      var_dump($data);
+      return Db::getInstance()->update($this->table, $data, $this->identifier.' = "'.$this->{$this->identifier}.'"');
+    }
+
+    public function delete()
+    {
+      if ($this->{$this->identifier}) {
+        return Db::getInstance()->delete($this->table, $this->identifier.' = '.$this->{$this->identifier});
+      }
+      return false;
     }
 
     public function getAll()
@@ -42,7 +65,7 @@
 
     // verifie la validité des propriétés de l'objet en fonction de la
     // definition
-    private function verifyPropertyByDefinition()
+    public function verifyPropertyByDefinition()
     {
       // verifie si id_user est bien un nombre
       if ($this->{$this->identifier} * 1 != $this->{$this->identifier}) {
@@ -50,15 +73,18 @@
       }
       $this->{$this->identifier} *= 1;
       foreach ($this->definition as $field_name => $field) {
-        if (array_key_exists('isNullable',$field) && $field['isNullable'] == true) {
-          if (empty($this->$field_name)) {
+        if (array_key_exists('isNullable', $field) && $field['isNullable'] == true) {
+          if (empty($this->$field_name) && array_key_exists('type', $field) && $field['type'] == 'boolean') {
+            $this->$field_name = '0';
+          } else if (empty($this->$field_name)) {
+            $this->$field_name = '';
             continue;
           }
         }
         if (array_key_exists('type',$field)) {
           switch ($field['type']) {
               case 'int':
-                if ($this->$field_name * 1 != $this->field_name) {
+                if ($this->$field_name * 1 != $this->$field_name) {
                   return false;
                 }
                 $this->$field_name *= 1;
@@ -70,9 +96,9 @@
               break;
               case 'boolean':
                   if ( $this->$field_name != 1
-                    && $this->field_name != 0
-                    && $this->field_name != '1'
-                    && $this->field_name != '0'
+                    && $this->$field_name != 0
+                    && $this->$field_name != '1'
+                    && $this->$field_name != '0'
                   ) {
                     return false;
                   }

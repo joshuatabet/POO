@@ -43,8 +43,8 @@
 
       $sql = rtrim($sql, ',');
       $sql .= ')';
+      var_dump($sql);
       $result = self::$pdo->query($sql);
-
       if (!empty($result)) {
           $result = self::$pdo->lastInsertId();
       }
@@ -83,7 +83,7 @@
       $sql = rtrim($sql, ',');
       $sql .= ' WHERE '.$where;
       $result = self::$pdo->query($sql);
-
+      var_dump($sql);
       return $result;
     }
 
