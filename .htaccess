@@ -1,12 +1,13 @@
+Options +FollowSymlinks
 RewriteEngine On
 
-# si la requete n'est pas un fichier ou un dossier dans views
-# (ex: css/style.css, js/script.js, pdf/stat.pdf)
-RewriteCond /views/%{REQUEST_FILENAME} !-f
-RewriteCond /views/%{REQUEST_FILENAME} !-d
-
 # si la requete est /admin
-RewriteRule admin index.php?controller=AdminConnectionController
+RewriteRule ^admin$ index.php?controller=AdminConnectionController
+
+# (ex: css/style.css, js/script.js, pdf/stat.pdf)
+# si la requete n'est pas un fichier ou un dossier dans views
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
 
 # redirection vers l'index
-RewriteRule (.*) index.php [L]
+RewriteRule (.*) index.php

@@ -40,7 +40,6 @@
       }
 
       $data = $this->createDataArray();
-      var_dump($data);
       return Db::getInstance()->update($this->table, $data, $this->identifier.' = "'.$this->{$this->identifier}.'"');
     }
 
@@ -74,7 +73,7 @@
       $this->{$this->identifier} *= 1;
       foreach ($this->definition as $field_name => $field) {
         if (array_key_exists('isNullable', $field) && $field['isNullable'] == true) {
-          if (empty($this->$field_name) && array_key_exists('type', $field) && $field['type'] == 'boolean') {
+          if (empty($this->$field_name) && array_key_exists('type', $field) && ($field['type'] == 'boolean' || $field['type'] == 'int')) {
             $this->$field_name = '0';
           } else if (empty($this->$field_name)) {
             $this->$field_name = '';

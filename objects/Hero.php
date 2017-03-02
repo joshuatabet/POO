@@ -2,7 +2,7 @@
 
   class Hero extends Character
   {
-    public $gold;
+    public $gold = 0;
 
     public function getAll()
     {

@@ -10,9 +10,12 @@
           if ($level = new Level(Tools::getValue('id_level'))) {
             $monster = new Monster();
             $monsters = $monster->getAll();
+            $chest = new Chest();
+            $chests = $chest->getAll();
             $this->assign(array(
               'level' => $level,
-              'monsters' => $monsters
+              'monsters' => $monsters,
+              'chests' => $chests
             ));
             $this->render('admin/levelView');
           }
@@ -26,6 +29,7 @@
             $level->nb_chest = Tools::getValue('nb_chest');
             $level->nb_monster = Tools::getValue('nb_monster');
             $level->type_monster = Tools::getValue('type_monster');
+            $level->type_chest = Tools::getValue('type_chest');
 
             if ($level->create()) {
               echo 'level create';
@@ -35,7 +39,12 @@
           } else {
             $monster = new Monster();
             $monsters = $monster->getAll();
-            $this->assign('monsters', $monsters);
+            $chest = new Chest();
+            $chests = $chest->getAll();
+            $this->assign(array(
+              'monsters' => $monsters,
+              'chests' => $chests
+            ));
             $this->render('admin/levelCreate');
           }
 
@@ -47,6 +56,7 @@
             $level->nb_chest = Tools::getValue('nb_chest');
             $level->nb_monster = Tools::getValue('nb_monster');
             $level->type_monster = Tools::getValue('type_monster');
+            $level->type_chest = Tools::getValue('type_chest');
             if ($level->update()) {
               echo 'level update';
             } else {

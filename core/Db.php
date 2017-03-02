@@ -83,7 +83,7 @@
       $sql = rtrim($sql, ',');
       $sql .= ' WHERE '.$where;
       $result = self::$pdo->query($sql);
-      var_dump($sql);
+      
       return $result;
     }
 

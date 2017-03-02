@@ -3,7 +3,7 @@
   <head>
       <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
       <title> DONJON </title>
-      <link rel="stylesheet" href="css/style.css"/>
+      <link rel="stylesheet" href="views/css/style.css"/>
       <!-- <link href="css/bootstrap.min.css" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="css/animate.css">
       <link rel="stylesheet" type="text/css" href="css/style.css">

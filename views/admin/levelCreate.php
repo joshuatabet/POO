@@ -16,6 +16,11 @@
           <input type="checkbox" name="type_monster[]" value="<?= $monster['id_character'] ?>"/><?= $monster['name'] ?>
         <?php endforeach; ?>
       <?php endif; ?>
+      <?php if ($chests): ?>
+        <?php foreach ($chests as $chest): ?>
+          <input type="checkbox" name="type_chest[]" value="<?= $chest['id_chest'] ?>"/><?= $chest['name'] ?>
+        <?php endforeach; ?>
+      <?php endif; ?>
       <button type="submit">Create</button>
     </form>
   </body>

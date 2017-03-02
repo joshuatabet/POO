@@ -12,7 +12,7 @@
       <?php if ($level->id_level): ?>
           <input type="hidden" name="id_level" value="<?= $level->id_level ?>"/>
       <?php endif?>
-      
+
       <input type="text" name="name" value="<?= $level->name ?>"/>
       <input type="number" name="nb_chest" value="<?= $level->nb_chest ?>"/>
       <input type="number" name="nb_monster" value="<?= $level->nb_monster ?>"/>
@@ -26,6 +26,18 @@
             <?= in_array($monster['id_character'], $level->type_monster) ? 'checked' : ''?>
           />
           <?= $monster['name'] ?>
+        <?php endforeach; ?>
+      <?php endif; ?>
+
+      <?php if (!empty($chests)): ?>
+        <?php foreach($chests as $chest): ?>
+          <input
+            type="checkbox"
+            name="type_chest[]"
+            value="<?= $chest['id_chest'] ?>"
+            <?= in_array($chest['id_chest'], $level->type_chest) ? 'checked' : ''?>
+          />
+          <?= $chest['name'] ?>
         <?php endforeach; ?>
       <?php endif; ?>
 
