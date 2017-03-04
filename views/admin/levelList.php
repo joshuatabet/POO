@@ -12,7 +12,7 @@
       <?php
       if (!empty($levels)) {
         foreach ($levels as $level) {
-          echo '<li><a href="index.php?controller=AdminLevelController&view=1&id_level='.$level['id_level'].'">'.$level['name'].'</a></li>';
+          echo '<li>'.$level['position'].': <a href="index.php?controller=AdminLevelController&view=1&id_level='.$level['id_level'].'">'.$level['name'].'</a></li>';
         }
       }
       ?>

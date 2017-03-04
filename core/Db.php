@@ -52,7 +52,7 @@
       return $result;
     }
 
-    public function select($table, $fields, $where = '') {
+    public function select($table, $fields, $where = '', $orderBy = '') {
       $sql = 'SELECT ';
 
       if (is_array($fields)) {
@@ -64,7 +64,7 @@
         $sql .= $fields;
       }
 
-      $sql .= ' FROM '.$table.' WHERE 1 = 1 '.($where ? 'AND '.$where : '');
+      $sql .= ' FROM '.$table.' WHERE 1 = 1 '.($where ? 'AND '.$where : '').($orderBy ? $orderBy : '');
       $result = self::$pdo->query($sql);
       if (!empty($result)) {
         $result = $result->fetchAll(PDO::FETCH_ASSOC);
@@ -83,7 +83,7 @@
       $sql = rtrim($sql, ',');
       $sql .= ' WHERE '.$where;
       $result = self::$pdo->query($sql);
-      
+
       return $result;
     }
 

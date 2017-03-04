@@ -13,7 +13,7 @@
         $user = new User();
         $user->email = Tools::getValue('email');
         $user->pass = Tools::getValue('pass');
-        $user->load();
+        
         if ($user->load()) {
             $user->newConnection();
             header('Location: index.php?controller=GameController');

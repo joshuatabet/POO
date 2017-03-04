@@ -25,6 +25,7 @@
     public $monster;
     public $hero;
 
+    
     // public function __construct($id_user = null)
     // {
     //   if ($id_user != null) {

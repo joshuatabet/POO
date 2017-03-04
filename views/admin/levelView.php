@@ -41,6 +41,7 @@
         <?php endforeach; ?>
       <?php endif; ?>
 
+      <input type="number" name="position" value="<?= $level->position ?>"/>
       <button type="submit">Update</button>
     </form>
 

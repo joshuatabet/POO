@@ -15,7 +15,10 @@
         if (Tools::isValid('choiceHero') && Tools::isValid('id_hero')) {
           $game->hero = new Hero(Tools::getValue('id_hero'));
         }
-        $game->update();
+        if (!$game->update()) {
+            $this->assign('game', $game);
+            $this->render('endGame');
+        }
       } else {
         $game = new Game();
         $_SESSION['game'] = serialize($game);

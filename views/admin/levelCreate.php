@@ -21,6 +21,8 @@
           <input type="checkbox" name="type_chest[]" value="<?= $chest['id_chest'] ?>"/><?= $chest['name'] ?>
         <?php endforeach; ?>
       <?php endif; ?>
+      <input type="number" name"position" placeholder="position"/>
+      
       <button type="submit">Create</button>
     </form>
   </body>

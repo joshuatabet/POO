@@ -30,7 +30,7 @@
             $level->nb_monster = Tools::getValue('nb_monster');
             $level->type_monster = Tools::getValue('type_monster');
             $level->type_chest = Tools::getValue('type_chest');
-
+            $level->position = Tools::getValue('position');
             if ($level->create()) {
               echo 'level create';
             } else {
@@ -57,6 +57,7 @@
             $level->nb_monster = Tools::getValue('nb_monster');
             $level->type_monster = Tools::getValue('type_monster');
             $level->type_chest = Tools::getValue('type_chest');
+            $level->position = Tools::getValue('position');
             if ($level->update()) {
               echo 'level update';
             } else {
@@ -84,7 +85,7 @@
         }
 
         $level = new Level();
-        $this->assign('levels', $level->getAll());
+        $this->assign('levels', $level->getAllOrdered());
         $this->render('admin/levelList');
       }
 

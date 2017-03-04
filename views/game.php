@@ -25,8 +25,9 @@
             <li><a href="index.php?controller=GameController&menu=1">Menu</a></li>
           </ul>
           <div class="btn-group" role="group" aria-label="...">
+
             <?php foreach ($game->levels as $level): ?>
-              <button type="button" class="btn <?= $level->id_level == $game->level->id_level ? 'btn-primary' : 'btn-default' ?> navbar-btn"><?= $level->name ?></button>
+              <button type="button" class="btn navbar-btn <?= $level->id_level == $game->level->id_level ? 'btn-primary' : 'btn-default' ?>"><?= $level->name ?></button>
             <?php endforeach; ?>
           </div>
         </div>
@@ -50,15 +51,17 @@
           </div>
           <div class="col-xs-12">
             <div class="list-group">
-                <button type="button" class="list-group-item"  href="index.php?controller=GameController&observe=1">
-                  Observer
-                </button>
-                <button type="button" class="list-group-item <?= $game->level->view ? '" href="index.php?controller=GameController&attack=1"' : 'disabled"' ?>">
-                  Attaquer
-                </button>
-                <button type="button" class="list-group-item" href="index.php?controller=GameController&defend=1">Défendre</button>
+              <button type="button" class="list-group-item"  href="index.php?controller=GameController&observe=1">Observer</button>
+              <?php if ($game->hero->atk): ?>
+                <button type="button" class="list-group-item <?= $game->level->view && $game->level->getNbAliveMonster() > 0 ? '" href="index.php?controller=GameController&attack=1&atk=1"' : 'disabled"' ?>">Attaquer</button>
+              <?php endif; ?>
+              <?php if ($game->hero->magic): ?>
+                  <button type="button" class="list-group-item <?= $game->level->view && $game->level->getNbAliveMonster() > 0 ? '" href="index.php?controller=GameController&attack=1&magic=1"' : 'disabled"' ?>">Attaquer</button>
+              <?php endif; ?>
+              <button type="button" class="list-group-item" href="index.php?controller=GameController&defend=1">Défendre</button>
               <button type="button" class="list-group-item" href="index.php?controller=GameController&escape=1">Fuir</button>
-              <button type="button" class="list-group-item" href="index.php?controller=GameController&openchest=1">Ouvrir un coffre</button>
+              <button type="button" class="list-group-item <?= $game->level->getNbAliveMonster() > 0 ? 'disabled"' : '" href="index.php?controller=GameController&openchest=1"' ?>" >Ouvrir un coffre</button>
+              <button type="button" class="list-group-item <?= $game->level->getNbAliveMonster() > 0 ? 'disabled"' : '" href="index.php?controller=GameController&nextLevel=1"' ?>">Passer au niveau suivant</button>
             </div>
           </div>
         </div>
@@ -68,18 +71,24 @@
               <div class="row">
 
                 <div class="col-xs-8">
+                  <h3>Monster
+                    <?php if ($game->level->view): ?>
+                      <span class="badge"><?= $game->level->nb_monster ?></span>
+                    <?php endif; ?>
+                  </h3>
                   <?php if ($game->level->view): ?>
-                    <h3>Monster <span class="badge"><?= $game->level->view ? $game->level->nb_monster : '0' ?></span></h3>
-                    <?php if (isset($game->monsters) && !empty($game->monsters)): ?>
-                      <?php foreach ($game->monsters as $monster): ?>
+                    <?php if (isset($game->level->monsters) && !empty($game->level->monsters)): ?>
+                      <?php foreach ($game->level->monsters as $monster): ?>
                         <div class="col-xs-4">
                           <div class="thumbnail">
                             <!-- <img src="..." alt="..."> -->
                             <div class="caption">
                               <h4><?= $monster->name ?></h4>
                               <p>Life: <?= $monster->life ?></p>
-                              <p>Atk:  <?= $monster->atk ?> </p>
-                              <p>Def:  <?= $monster->def ?> </p>
+                              <p>Atk: <?= $monster->atk ?></p>
+                              <p>Def: <?= $monster->def ?></p>
+                              <p>Speed: <?= $monster->speed?></p>
+                              <p>Magic: <?= $monster->magic?></p>
                             </div>
                           </div>
                         </div>
@@ -88,10 +97,14 @@
                   <?php endif; ?>
                 </div>
                 <div class="col-xs-4">
+                  <h3>Chest
+                    <?php if ($game->level->view): ?>
+                      <span class="badge"><?= $game->level->nb_chest ?></span>
+                    <?php endif; ?>
+                  </h3>
                   <?php if ($game->level->view): ?>
-                    <h3>Chest <span class="badge"><?= $game->level->view ? $game->level->nb_chest : '0' ?></span></h3>
-                    <?php if (isset($game->chests) && !empty($game->chests)): ?>
-                      <?php foreach ($game->chests as $chest): ?>
+                    <?php if (isset($game->level->chests) && !empty($game->level->chests)): ?>
+                      <?php foreach ($game->level->chests as $chest): ?>
                         <div class="col-xs-12">
                           <div class="thumbnail">
                             <!-- <img src="..." alt="..."> -->
