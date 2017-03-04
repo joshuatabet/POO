@@ -2,6 +2,7 @@
 
   class Hero extends Personnage {
     public $pseudo;
+    public $aleatoire;
 
     public function __construct($id = null) {
       if ($id) {

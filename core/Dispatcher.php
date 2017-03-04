@@ -43,7 +43,7 @@
             include 'views/joueur.php';
             $html = ob_get_clean();
             echo $html;
-            die();
+
           }
 
 
@@ -116,6 +116,11 @@
         }
 
         return false;
+      }
+
+      public static function deconnected()
+      {
+        unset($_SESSION['uniqid']);
       }
 
   }
