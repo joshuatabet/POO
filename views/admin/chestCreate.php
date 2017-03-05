@@ -14,7 +14,15 @@
       <input type="number" name="atk" placeholder="atk"/>
       <input type="number" name="magic" placeholder="magic"/>
       <input type="number" name="speed" placeholder="speed"/>
-    
+      <input type="number" name="gold" placeholder="gold"/>
+      </br>
+      <input type="number" name="variation_life" placeholder="variation_life"/>
+      <input type="number" name="variation_def" placeholder="variation_def"/>
+      <input type="number" name="variation_atk" placeholder="variation_atk"/>
+      <input type="number" name="variation_magic" placeholder="variation_magic"/>
+      <input type="number" name="variation_speed" placeholder="variation_speed"/>
+      <input type="number" name="variation_gold" placeholder="variation_gold"/>
+
       <button type="submit">Create</button>
     </form>
   </body>

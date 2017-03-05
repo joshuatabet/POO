@@ -17,10 +17,11 @@
     public function setChest($chest)
     {
       $this->life += $chest->life;
-      $this->bonusAtk = $chest->atk ? $chest->atk : $this->bonusAtk;
-      $this->bonusDef = $chest->def ? $chest->def : $this->bonusDef;
-      $this->bonusMagic = $chest->magic ? $chest->magic : $this->bonusMagic;
-      $this->bonusSpeed = $chest->speed ? $chest->speed : $this->bonusSpeed;
+      $this->gold += $chest->gold;
+      $this->bonusAtk = $chest->atk ? (int)$chest->atk : $this->bonusAtk;
+      $this->bonusDef = $chest->def ? (int)$chest->def : $this->bonusDef;
+      $this->bonusMagic = $chest->magic ? (int)$chest->magic : $this->bonusMagic;
+      $this->bonusSpeed = $chest->speed ? (int)$chest->speed : $this->bonusSpeed;
     }
 
     public function getAtk()
@@ -42,5 +43,5 @@
     {
       return $this->speed + $this->bonusSpeed;
     }
-    
+
 }

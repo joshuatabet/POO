@@ -14,10 +14,21 @@
         $game = unserialize(Tools::getValueSession('game'));
         if (Tools::isValid('choiceHero') && Tools::isValid('id_hero')) {
           $game->hero = new Hero(Tools::getValue('id_hero'));
+          $game->hero->calcVariation();
         }
-        if (!$game->update()) {
-            $this->assign('game', $game);
+        $this->assign('game', $game);
+        $update = $game->update();
+        switch ((string)$update) {
+          case '1':
+            $_SESSION['game'] = serialize($game);
+            $this->render('game');
+          break;
+          case 'endGame':
             $this->render('endGame');
+          break;
+          case 'gameOver':
+            $this->render('gameOver');
+          break;
         }
       } else {
         $game = new Game();
@@ -33,9 +44,6 @@
       // foreach ($game->chests as &$chest) {
       //   $chest->isLocked = false;
       // }
-      $_SESSION['game'] = serialize($game);
 
-      $this->assign('game', $game);
-      $this->render('game');
     }
   }

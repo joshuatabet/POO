@@ -17,6 +17,12 @@
       <input type="number" name="atk" value="<?= $character->atk ?>"/>
       <input type="number" name="magic" value="<?= $character->magic ?>"/>
       <input type="number" name="speed" value="<?= $character->speed ?>"/>
+      </br>
+      <input type="number" name="variation_atk" value="<?= $character->variation_atk ?>"/>
+      <input type="number" name="variation_def" value="<?= $character->variation_def ?>"/>
+      <input type="number" name="variation_magic" value="<?= $character->variation_magic ?>"/>
+      <input type="number" name="variation_speed" value="<?= $character->variation_speed ?>"/>
+      </br>
       monster
       <input type="radio" name="monster" value="1" <?= $character->monster ? 'checked' : '' ?>/>yes
       <input type="radio" name="monster" value="0" <?= $character->monster ? '' : 'checked' ?>/>no

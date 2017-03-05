@@ -38,9 +38,16 @@
       }
     }
 
+    public function getMonsterAction()
+    {
+      if ($this->getNbAliveMonster()) {
+        return $this->monsters[0]->choiceAction();
+      }
+    }
+
     public function unlockChest()
     {
-      foreach ($this->chests as $chest) {
+      foreach ($this->chests as &$chest) {
         if ($chest->isLocked) {
           $chest->isLocked = false;
           break;
@@ -121,7 +128,7 @@
       if (is_array($this->type_monster)) {
         $this->type_monster = implode(',', $this->type_monster);
       }
-      if (is_array($this->type_monster)) {
+      if (is_array($this->type_chest)) {
         $this->type_chest = implode(',', $this->type_chest);
       }
       if (parent::load()) {

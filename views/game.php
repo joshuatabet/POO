@@ -42,10 +42,10 @@
           <div class="col-xs-12">
             <table class="table">
               <tr><th>Life:</th><td><span class="badge"><?= $game->hero->life ?></span></td></tr>
-              <tr><th>Def:</th><td><span class="badge"><?= $game->hero->def ?></span></td></tr>
-              <tr><th>Atk:</th><td><span class="badge"><?= $game->hero->atk ?></span></td></tr>
-              <tr><th>Magic:</th><td><span class="badge"><?= $game->hero->magic ?></span></td></tr>
-              <tr><th>Speed:</th><td><span class="badge"><?= $game->hero->speed ?></span></td></tr>
+              <tr><th>Def:</th><td><span class="badge"><?= $game->hero->def ?></span> <?= $game->hero->bonusDef ? ' + <span class="badge">'.$game->hero->bonusDef.'</span>' : '' ?></td></tr>
+              <tr><th>Atk:</th><td><span class="badge"><?= $game->hero->atk ?></span> <?= $game->hero->bonusAtk ? ' + <span class="badge">'.$game->hero->bonusAtk.'</span>' : '' ?></td></tr>
+              <tr><th>Magic:</th><td><span class="badge"><?= $game->hero->magic ?></span> <?= $game->hero->bonusMagic ? ' + <span class="badge">'.$game->hero->bonusMagic.'</span>' : '' ?></td></tr>
+              <tr><th>Speed:</th><td><span class="badge"><?= $game->hero->speed ?></span> <?= $game->hero->bonusSpeed ? ' + <span class="badge">'.$game->hero->bonusSpeed.'</span>' : '' ?></td></tr>
               <tr><th>Gold:</th><td><span class="badge"><?= $game->hero->gold ?></span></td></tr>
             </table>
           </div>
@@ -53,14 +53,14 @@
             <div class="list-group">
               <button type="button" class="list-group-item"  href="index.php?controller=GameController&observe=1">Observer</button>
               <?php if ($game->hero->atk): ?>
-                <button type="button" class="list-group-item <?= $game->level->view && $game->level->getNbAliveMonster() > 0 ? '" href="index.php?controller=GameController&attack=1&atk=1"' : 'disabled"' ?>">Attaquer</button>
+                <button type="button" class="list-group-item <?= $game->level->view && $game->level->getNbAliveMonster() > 0 ? '" href="index.php?controller=GameController&attack=1&atk=1"' : 'disabled"' ?>">Attaquer (atk)</button>
               <?php endif; ?>
               <?php if ($game->hero->magic): ?>
-                  <button type="button" class="list-group-item <?= $game->level->view && $game->level->getNbAliveMonster() > 0 ? '" href="index.php?controller=GameController&attack=1&magic=1"' : 'disabled"' ?>">Attaquer</button>
+                  <button type="button" class="list-group-item <?= $game->level->view && $game->level->getNbAliveMonster() > 0 ? '" href="index.php?controller=GameController&attack=1&magic=1"' : 'disabled"' ?>">Attaquer (magic)</button>
               <?php endif; ?>
               <button type="button" class="list-group-item" href="index.php?controller=GameController&defend=1">Défendre</button>
               <button type="button" class="list-group-item" href="index.php?controller=GameController&escape=1">Fuir</button>
-              <button type="button" class="list-group-item <?= $game->level->getNbAliveMonster() > 0 ? 'disabled"' : '" href="index.php?controller=GameController&openchest=1"' ?>" >Ouvrir un coffre</button>
+              <button type="button" class="list-group-item <?= $game->level->getNbAliveMonster() > 0 ? 'disabled"' : '" href="index.php?controller=GameController&openChest=1"' ?>" >Ouvrir un coffre</button>
               <button type="button" class="list-group-item <?= $game->level->getNbAliveMonster() > 0 ? 'disabled"' : '" href="index.php?controller=GameController&nextLevel=1"' ?>">Passer au niveau suivant</button>
             </div>
           </div>
@@ -104,7 +104,7 @@
                   </h3>
                   <?php if ($game->level->view): ?>
                     <?php if (isset($game->level->chests) && !empty($game->level->chests)): ?>
-                      <?php foreach ($game->level->chests as $chest): ?>
+                      <?php foreach ($game->level->chests as $key => $chest): ?>
                         <div class="col-xs-12">
                           <div class="thumbnail">
                             <!-- <img src="..." alt="..."> -->
@@ -126,8 +126,10 @@
                                 <?php if ($chest->gold): ?>
                                   <p>Gold : <?= $chest->gold ?> </p></br>
                                 <?php endif; ?>
+                                <a href="index.php?controller=GameController&getChest=1&num_chest=<?= $key ?>">équiper</a>
                               <?php endif; ?>
                             </div>
+
                           </div>
                         </div>
                       <?php endforeach; ?>

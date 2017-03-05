@@ -17,7 +17,14 @@
       <input type="number" name="atk" value="<?= $chest->atk ?>"/>
       <input type="number" name="magic" value="<?= $chest->magic ?>"/>
       <input type="number" name="speed" value="<?= $chest->speed ?>"/>
-
+      <input type="number" name="gold" value="<?= $chest->gold ?>"/>
+      </br>
+      <input type="number" name="variation_life" placeholder="<?= $chest->variation_life ?>"/>
+      <input type="number" name="variation_def" placeholder="<?= $chest->variation_def ?>"/>
+      <input type="number" name="variation_atk" placeholder="<?= $chest->variation_atk ?>"/>
+      <input type="number" name="variation_magic" placeholder="<?= $chest->variation_magic ?>"/>
+      <input type="number" name="variation_speed" placeholder="<?= $chest->variation_speed ?>"/>
+      <input type="number" name="variation_gold" placeholder="<?= $chest->variation_gold ?>"/>
       <button type="submit">Update</button>
     </form>
 

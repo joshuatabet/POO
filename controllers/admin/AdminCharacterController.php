@@ -22,6 +22,10 @@
           $character->speed = Tools::getValue('speed');
           $character->monster = Tools::getValue('monster');
           $character->hero = Tools::getValue('hero');
+          $character->variation_atk = Tools::getValue('variation_atk');
+          $character->variation_def = Tools::getValue('variation_def');
+          $character->variation_magic = Tools::getValue('variation_magic');
+          $character->variation_speed = Tools::getValue('variation_speed');
           if ($character->create()) {
             echo 'character create';
           } else {
@@ -45,6 +49,10 @@
           $character->speed = Tools::getValue('speed');
           $character->monster = Tools::getValue('monster');
           $character->hero = Tools::getValue('hero');
+          $character->variation_atk = Tools::getValue('variation_atk');
+          $character->variation_def = Tools::getValue('variation_def');
+          $character->variation_magic = Tools::getValue('variation_magic');
+          $character->variation_speed = Tools::getValue('variation_speed');
           if ($character->update()) {
             echo 'character update';
           } else {

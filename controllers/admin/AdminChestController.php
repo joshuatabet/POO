@@ -21,6 +21,12 @@
           $chest->magic = Tools::getValue('magic');
           $chest->speed = Tools::getValue('speed');
           $chest->gold = Tools::getValue('gold');
+          $chest->variation_life = Tools::getValue('variation_life');
+          $chest->variation_def = Tools::getValue('variation_def');
+          $chest->variation_atk = Tools::getValue('variation_atk');
+          $chest->variation_magic = Tools::getValue('variation_magic');
+          $chest->variation_speed = Tools::getValue('variation_speed');
+          $chest->variation_gold = Tools::getValue('variation_gold');
           if ($chest->create()) {
             echo 'chest create';
           } else {
@@ -42,6 +48,12 @@
           $chest->magic = Tools::getValue('magic');
           $chest->speed = Tools::getValue('speed');
           $chest->gold = Tools::getValue('gold');
+          $chest->variation_life = Tools::getValue('variation_life');
+          $chest->variation_def = Tools::getValue('variation_def');
+          $chest->variation_atk = Tools::getValue('variation_atk');
+          $chest->variation_magic = Tools::getValue('variation_magic');
+          $chest->variation_speed = Tools::getValue('variation_speed');
+          $chest->variation_gold = Tools::getValue('variation_gold');
           if ($chest->update()) {
             echo 'chest update';
           } else {
