@@ -1,0 +1,8 @@
+.container-main {
+  padding-top: 50px;
+}
+a.disable {
+  pointer-events: none;
+  cursor: default;
+  text-decoration: line-through;
+}

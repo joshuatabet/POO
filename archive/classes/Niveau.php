@@ -1,6 +1,7 @@
 <?php
 
   class Niveau {
+    
     public $nom;
     public $coffre;
     public $monstre;

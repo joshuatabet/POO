@@ -3,7 +3,7 @@
   <head>
       <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
       <title> DONJON </title>
-      <link rel="stylesheet" href="css/style.css"/>
+      <link rel="stylesheet" href="views/css/style.css"/>
       <!-- <link href="css/bootstrap.min.css" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="css/animate.css">
       <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -21,7 +21,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <form id="login-form" action="?controller=ConnexionController" method="get">
+                    <form id="login-form" action="index.php?controller=ConnectionController&register=1" method="get">
                       <input type="hidden" name="type" value="inscription"/>
                         <div class="modal-body">
                             <div id="div-login-msg">
@@ -30,9 +30,9 @@
                                 <span style="color: white">S'inscrire sur le jeu.</span>
                             </div>
                             <input style="margin-bottom: 15px;" id="login_username" class="form-control" type="text"
-                                   placeholder="Entrez votre nom." required name="nom">
+                                   placeholder="Entrez votre nom." required name="lastname">
                             <input style="margin-bottom: 15px;" id="login_password" class="form-control" type="text"
-                                   placeholder="Entrez votre prénom." required name="prenom">
+                                   placeholder="Entrez votre prénom." required name="firstname">
                             <input style="margin-bottom: 15px;" id="login_password" class="form-control" type="email"
                                    placeholder="Entrez votre adresse email." required name="email">
                             <input style="margin-bottom: 15px;" id="login_password" class="form-control" type="text"
@@ -40,7 +40,7 @@
                             <input style="margin-bottom: 15px;" id="login_password" class="form-control" type="password"
                                    placeholder="Choisissez un mot de passe." required name="pass">
                             <input style="margin-bottom: 15px;" id="login_descritpif" class="form-control" type="longtext"
-                                   placeholder="Entrez votre descritption." required name="descriptif">
+                                   placeholder="Entrez votre descritption." required name="description">
                         </div>
                         <div class="modal-footer">
                             <div>
@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    <form id="login-form" action="index.php?controller=ConnexionController&connexion=1" method="post">
+                    <form id="login-form" action="index.php?controller=ConnectionController&login=1" method="post">
                         <div class="modal-body">
                             <div id="div-login-msg">
                                 <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"

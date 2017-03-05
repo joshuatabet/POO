@@ -1,10 +1,11 @@
 <?php
-  class Db {
+  class Db
+  {
 
     public static $pdo;
     public static $Db;
 
-    function __construct() {
+    public function __construct() {
       try {
           self::$pdo = new PDO('mysql:host='._DB_HOST_.';dbname='._DB_NAME_, _DB_USER_, _DB_PASSWORD_, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
       }
@@ -21,32 +22,39 @@
       return self::$Db;
     }
 
-    function execute($sql) {
+    public function execute($sql) {
       $result = self::$pdo->query($sql);
       return $result;
     }
 
-    function insert($table, $values) {
+    public function insert($table, $values) {
       $sql = 'INSERT INTO '.$table.' (';
 
       foreach ($values as $fieldName => $value) {
          $sql .= $fieldName.',';
       }
+
       $sql = rtrim($sql, ',');
       $sql .= ') VALUES (';
 
       foreach ($values as $fieldName => $value) {
          $sql .= '"'.$value.'",';
       }
+
       $sql = rtrim($sql, ',');
       $sql .= ')';
-
+      var_dump($sql);
       $result = self::$pdo->query($sql);
+      if (!empty($result)) {
+          $result = self::$pdo->lastInsertId();
+      }
+
       return $result;
     }
 
-    function select($table, $fields, $where = '') {
+    public function select($table, $fields, $where = '', $orderBy = '') {
       $sql = 'SELECT ';
+
       if (is_array($fields)) {
         foreach ($fields as $field) {
           $sql .= $field.',';
@@ -56,31 +64,33 @@
         $sql .= $fields;
       }
 
-      $sql .= ' FROM '.$table.' WHERE 1 = 1 AND '.$where;
-
+      $sql .= ' FROM '.$table.' WHERE 1 = 1 '.($where ? 'AND '.$where : '').($orderBy ? $orderBy : '');
       $result = self::$pdo->query($sql);
       if (!empty($result)) {
         $result = $result->fetchAll(PDO::FETCH_ASSOC);
       }
+
       return $result;
     }
 
-    function update($table, $values, $where) {
+    public function update($table, $values, $where) {
       $sql = 'UPDATE '.$table.' SET ';
 
       foreach ($values as $fieldName => $value) {
          $sql .= $fieldName.' = "'.$value.'",';
       }
+
       $sql = rtrim($sql, ',');
       $sql .= ' WHERE '.$where;
-
       $result = self::$pdo->query($sql);
+
       return $result;
     }
 
-    function delete($table, $where) {
+    public function delete($table, $where) {
       $sql = 'DELETE FROM '.$table.' WHERE '.$where;
       $result = self::$pdo->query($sql);
+
       return $result;
     }
 
